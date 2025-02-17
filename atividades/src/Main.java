@@ -2,41 +2,34 @@ import Perceptron.TabelaVerdade.Perceptron;
 import java.util.Scanner;
 
 public class Main {
-    private static final Scanner texto = new Scanner(System.in); // Scanner global
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         Perceptron perceptron = new Perceptron();
-
-        int escolha = obterEscolha();
+        int escolha = obterEscolha(scanner);
         gerarTabela(perceptron, escolha);
-
-        texto.close(); // Fechando Scanner no final
+        scanner.close();
     }
 
-    // metodo para saber qual tabela o usuario quer
-    private static int obterEscolha() {
+    private static int obterEscolha(Scanner scanner) {
         int escolha;
 
         while (true) {
-            limparConsole();
-            System.out.println("Qual tabela deseja gerar?");
-            System.out.println("1 - AND");
-            System.out.println("2 - OR");
+            System.out.println("Qual tabela deseja gerar? 1 == AND, 2 == OR");
             System.out.print("Digite sua escolha: ");
 
-            if (texto.hasNextInt()) {
-                escolha = texto.nextInt();
+            if (scanner.hasNextInt()) {
+                escolha = scanner.nextInt();
                 if (escolha == 1 || escolha == 2) {
-                    return escolha; // Retorna escolha válida
+                    return escolha;
                 }
             } else {
-                texto.next(); // Descarta entrada inválida
+                scanner.next(); // Descarta entrada inválida
             }
 
             System.out.println("Opção inválida! Por favor, digite 1 para AND ou 2 para OR.\n");
         }
     }
-
 
     private static void gerarTabela(Perceptron perceptron, int escolha) {
         int[][] entradas = {
@@ -60,9 +53,5 @@ public class Main {
             System.out.println(entrada[0] + " " + (escolha == 1 ? "AND" : "OR") + " " + entrada[1] +
                     " = " + perceptron.prever(entrada[0], entrada[1]));
         }
-    }
-
-    private static void limparConsole() {
-        System.out.println("\n".repeat(100)); // Alternativa para IntelliJ
     }
 }

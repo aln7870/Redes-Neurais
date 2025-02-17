@@ -25,7 +25,7 @@ public class Perceptron {
         return (soma >= 0) ? 1 : 0;
     }
 
-    // faz a soma ponderada e com os pesos atuais
+    // faz a soma ponderada com os pesos atuais
     public int prever(int x1, int x2){
         double soma = (x1 * pesos[0]) + (x2 * pesos[1]) + (1 * pesos[2]);
         return ativacao(soma); // chama a ativação

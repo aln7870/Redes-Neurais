@@ -1,12 +1,9 @@
 import Perceptron.TabelaVerdade.Perceptron;
 
-import java.util.Scanner;
-
 public class TesteXor {
     public static void main(String[] args) {
 
          Perceptron perceptron = new Perceptron();
-        Scanner texto = new Scanner(System.in);
         int entradas[][];
         int saidas[];
         entradas = new int[][]{
